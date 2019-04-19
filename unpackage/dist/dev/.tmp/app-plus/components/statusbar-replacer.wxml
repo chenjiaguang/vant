@@ -1,0 +1,1 @@
+<view class="wrapper" style="{{'background-color:'+(bg)+';'}}" bind:__l="__l"></view>
