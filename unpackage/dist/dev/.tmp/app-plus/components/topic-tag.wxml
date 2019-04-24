@@ -1,0 +1,1 @@
+<view class="wrapper" style="{{'background-image:'+('-webkit-linear-gradient(left, '+colorStart+', '+colorEnd+')')+';'}}" bind:__l="__l"><text class="icon vantfont vant-topic"></text><text class="title">{{title}}</text></view>

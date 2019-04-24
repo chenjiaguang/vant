@@ -98,34 +98,65 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var topicTag = function topicTag() {return __webpack_require__.e(/*! import() | components/topic-tag */ "components/topic-tag").then(__webpack_require__.bind(null, /*! ../../components/topic-tag.vue */ "../../../../../../Users/yuxun/work2/vant/vant/components/topic-tag.vue"));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      title: 'Hello Vant',
       tabs: [
       {
         idx: 0,
@@ -146,20 +177,82 @@ var _default =
         page: {} }],
 
 
-      currentIdx: 0 };
+      currentTabIdx: 1,
+      tabIndicatorPos: [],
+      recommendCates: [
+      { id: '1', title: '热门' },
+      { id: '2', title: '海南' },
+      { id: '3', title: '动漫' },
+      { id: '4', title: '游戏' },
+      { id: '5', title: '文化' },
+      { id: '6', title: '科技' },
+      { id: '7', title: '娱乐' },
+      { id: '8', title: '数码' },
+      { id: '9', title: '财经' },
+      { id: '10', title: '体育' },
+      { id: '11', title: '社会' }],
+
+      currentCateIdx: 0,
+      recommendTopics: [
+      { id: '1', title: '舌尖上的海口', colorStart: '#FF4881', colorEnd: '#FF7EB7' },
+      { id: '2', title: '加油萌宠', colorStart: '#23D195', colorEnd: '#53F2CF' },
+      { id: '3', title: '治理熊孩子', colorStart: '#FFA910', colorEnd: '#FFD425' },
+      { id: '4', title: '明星晒照哪家强', colorStart: '#23D195', colorEnd: '#53F2CF' },
+      { id: '5', title: '人群中的好声音', colorStart: '#33ADFF', colorEnd: '#62D6FF' },
+      { id: '6', title: '烂片预警', colorStart: '#33ADFF', colorEnd: '#62D6FF' },
+      { id: '7', title: '海南生活', colorStart: '#6647D4', colorEnd: '#CA7DFF' },
+      { id: '8', title: '延禧攻略', colorStart: '#FF4881', colorEnd: '#FF7EB7' }] };
 
 
   },
+  computed: {
+    indicatorPos: function indicatorPos() {
+      var res = '-200%'; // 默认隐藏指示滑块
+      if (this.tabIndicatorPos && this.tabIndicatorPos[this.currentTabIdx]) {
+        res = this.tabIndicatorPos[this.currentTabIdx] + 'px';
+      }
+      return res;
+    },
+    prevIdx: function prevIdx() {
+      return this.currentTabIdx === 0 ? this.tabs.length - 1 : this.currentTabIdx - 1;
+    },
+    nextIdx: function nextIdx() {
+      return this.currentTabIdx === this.tabs.length - 1 ? 0 : this.currentTabIdx + 1;
+    } },
+
+  components: { topicTag: topicTag },
   onLoad: function onLoad() {
 
   },
+  onReady: function onReady() {
+    this.initTabIndicatorPos();
+  },
   methods: {
-    changeTab: function changeTab(e) {
-      console.log('changeTab', e.idx);
-      uni.showToast({
-        title: e.idx.toString(),
-        icon: 'none' });
-
+    initTabIndicatorPos: function initTabIndicatorPos() {var _this = this;
+      var query = uni.createSelectorQuery();
+      query.select('#indicator-block').boundingClientRect(function (indEvent) {
+        if (indEvent && indEvent.width) {
+          var query2 = uni.createSelectorQuery();
+          query2.selectAll('.tab-item').boundingClientRect(function (e) {
+            _this.tabIndicatorPos = e.map(function (item) {
+              var left = parseInt(item.left + item.width / 2 - indEvent.width / 2);
+              return left;
+            });
+          }).exec();
+        }
+      }).exec();
+    },
+    changeTab: function changeTab(tab) {
+      this.currentTabIdx = tab.idx;
+    },
+    changeCate: function changeCate(e) {
+      if (e.detail.source === 'touch') {// 用户触摸swiper触发的回调
+        this.currentCateIdx = e.detail.current;
+      }
+    },
+    userChangeCate: function userChangeCate(idx) {
+      console.log('userChangeCate', idx);
+      this.currentCateIdx = idx;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ "./node_modules/@dcloudio/uni-app-plus/dist/index.js")["default"]))
 

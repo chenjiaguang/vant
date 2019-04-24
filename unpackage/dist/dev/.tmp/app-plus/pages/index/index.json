@@ -1,6 +1,7 @@
 {
   "titleNView": false,
   "usingComponents": {
-    "statusbar-replacer": "/components/statusbar-replacer"
+    "statusbar-replacer": "/components/statusbar-replacer",
+    "topic-tag": "/components/topic-tag"
   }
 }
